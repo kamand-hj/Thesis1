@@ -62,6 +62,9 @@ activity['three_times_vigorous_activity'] = activity.phys_activity.str.contains(
 activity['daily_vigorous_activity'] = activity.phys_activity.str.contains('6.0')
 activity = activity.replace(to_replace='nan', value=None, regex=False)
 
+activity = activity[activity['vigorous_act']<4200]
+activity = activity[activity['moderate_act']<4200]
+
 activity=activity.drop(labels=['index'], axis=1)
 
 activity = activity[(activity.sleep_time <=15) & (activity.sleep_time1 <= 15)]
